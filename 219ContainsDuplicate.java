@@ -26,3 +26,19 @@ class Solution {
         return false;
     }
 }
+
+// Second version of containsDuplicate, returns true if differences
+// between indices of two duplicates less than or equal to k. Use
+// a hash map to keep track of last seen indices as we go.
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        Map<Integer, Integer> m = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (m.containsKey(nums[i]) && i - m.get(nums[i]) <= k) {
+                return true;
+            }
+            m.put(nums[i], i);
+        }
+        return false;
+    }
+}
